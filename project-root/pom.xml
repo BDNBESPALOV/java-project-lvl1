@@ -8,7 +8,7 @@
 
     <groupId>BDN.BESPALOV</groupId>
     <artifactId>project-root</artifactId>
-    <version>1.0-SNAPSHOT</version>
+    <version>1.1-SNAPSHOT</version>
 
 
          <properties>
@@ -21,14 +21,7 @@
         <!--Libs-->
 
         <log4j-slf4j-impl.version>2.12.0</log4j-slf4j-impl.version>
-       <vavr.version>1.0.0-alpha-2</vavr.version>
-        <lombok.version>1.18.8</lombok.version>
-        <checker.version>2.9.0</checker.version>
-        <annotations.version>17.0.0</annotations.version>
-        <junit-jupiter.version>5.3.1</junit-jupiter.version>
-        <junit-jupiter-params.version>5.5.0</junit-jupiter-params.version>
-        <junit-jupiter-engine.version>5.5.0</junit-jupiter-engine.version>
-        <assertj-core.version>3.12.2</assertj-core.version>
+
 
         <!--Plugins-->
         <maven-compiler-plugin.version>3.8.1</maven-compiler-plugin.version>
@@ -49,58 +42,11 @@
             <version>${log4j-slf4j-impl.version}</version>
             <optional>true</optional>
         </dependency>
-
-	<dependency>
-  		<groupId>org.apache.commons</groupId>
-  		<artifactId>commons-math3</artifactId>
-  		<version>3.6</version>
-	</dependency>
-
         <dependency>
-            <groupId>io.vavr</groupId>
-            <artifactId>vavr</artifactId>
-            <version>${vavr.version}</version>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-math3</artifactId>
+            <version>3.6</version>
         </dependency>
-        <!-- CODE GENERATION (Lombok & CheckerFramework) -->
-      <dependency>
-            <groupId>org.projectlombok</groupId>
-            <artifactId>lombok</artifactId>
-            <version>${lombok.version}</version>
-            <scope>provided</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.checkerframework</groupId>
-            <artifactId>checker</artifactId>
-            <version>${checker.version}</version>
-            <scope>provided</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.jetbrains</groupId>
-            <artifactId>annotations</artifactId>
-            <version>${annotations.version}</version>
-            <scope>provided</scope>
-        </dependency>
-
-        <!-- TEST (JUnit 5 & Mockito) -->
-        <dependency>
-            <groupId>org.junit.jupiter</groupId>
-            <artifactId>junit-jupiter-params</artifactId>
-            <version>${junit-jupiter-params.version}</version>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.assertj</groupId>
-            <artifactId>assertj-core</artifactId>
-            <version>${assertj-core.version}</version>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.junit.jupiter</groupId>
-            <artifactId>junit-jupiter-engine</artifactId>
-            <version>${junit-jupiter-engine.version}</version>
-            <scope>test</scope>
-        </dependency>
-
     </dependencies>
 
     <build>

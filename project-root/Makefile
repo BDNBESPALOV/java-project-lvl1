@@ -10,7 +10,7 @@ compile-run: build build-run
 build:
 	./mvnw clean package
 build-run:
-	java -jar ./target/project-root-1.0-SNAPSHOT-jar-with-dependencies.jar
+	java -jar ./target/project-root-1.1-SNAPSHOT-jar-with-dependencies.jar
 update:
 	./mvnw versions:update-properties
 	./mvnw versions:display-plugin-updates

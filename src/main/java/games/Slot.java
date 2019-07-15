@@ -1,4 +1,4 @@
-package src.main.java.games;
+package main.java.games;
 
 public class Slot {
     public static void main(String... __) {

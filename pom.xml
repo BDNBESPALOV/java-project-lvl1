@@ -6,20 +6,18 @@
 
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>BDN.BESPALOV</groupId>
-    <artifactId>project-root</artifactId>
-    <version>1.2-SNAPSHOT</version>
+    <groupId>BDN.Project1</groupId>
+    <artifactId>F</artifactId>
+    <version>1</version>
 
-
-         <properties>
+    <properties>
 
         <!--Project settings-->
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-        <maven.compiler.release>12</maven.compiler.release>
+        <maven.compiler.release>11</maven.compiler.release>
 
         <!--Libs-->
-
         <log4j-slf4j-impl.version>2.12.0</log4j-slf4j-impl.version>
 
 
@@ -31,23 +29,26 @@
         <maven-surefire-plugin.version>3.0.0-M3</maven-surefire-plugin.version>
         <sonar-maven-plugin.version>2.7.1</sonar-maven-plugin.version>
 
+
     </properties>
-
     <dependencies>
+    <dependency>
+        <groupId>org.apache.logging.log4j</groupId>
+        <artifactId>log4j-slf4j-impl</artifactId>
+        <version>${log4j-slf4j-impl.version}</version>
+        <optional>true</optional>
+    </dependency>
+    <dependency>
+        <groupId>org.apache.commons</groupId>
+        <artifactId>commons-math3</artifactId>
+        <version>3.6</version>
+    </dependency>
 
-        <!-- COMMON LIBS (Log4J2 & Vavr) -->
-        <dependency>
-            <groupId>org.apache.logging.log4j</groupId>
-            <artifactId>log4j-slf4j-impl</artifactId>
-            <version>${log4j-slf4j-impl.version}</version>
-            <optional>true</optional>
-        </dependency>
-        <dependency>
-            <groupId>org.apache.commons</groupId>
-            <artifactId>commons-math3</artifactId>
-            <version>3.6</version>
-        </dependency>
-    </dependencies>
+
+
+</dependencies>
+
+
 
     <build>
 
@@ -80,7 +81,7 @@
                 <configuration>
                     <archive>
                         <manifest>
-                            <mainClass>src.main.java.games.Slot</mainClass>
+                            <mainClass>main.java.games.Slot</mainClass>
                         </manifest>
                     </archive>
                     <descriptorRefs>
@@ -142,7 +143,7 @@
             </plugin>
 
             <!-- SUREFIRE (compatible with JUnit 5+, Java 9+, Lombok) j-->
-            <plugin> 
+            <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
                 <version>${maven-surefire-plugin.version}</version>

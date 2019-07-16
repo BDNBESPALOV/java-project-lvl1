@@ -2,7 +2,7 @@ language: java
 jdk: oraclejdk12
 
 install: true
-script: D:\XO_\java-project-lvl1\mvnw clean install
+script: ./mvnw clean install
 cache:
   directories:
     - $HOME/.m2

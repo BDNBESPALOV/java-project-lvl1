@@ -1,8 +1,11 @@
 package games;
 
+import org.slf4j.Logger;
+
 import java.io.IOException;
 
 public class BlackJack {
+    private static final Logger log = org.slf4j.LoggerFactory.getLogger(BlackJack.class);
     private static int[] cards; // Основная колода
     private static int cursor; // Счётчик карт основной колоды
 
@@ -18,22 +21,23 @@ public class BlackJack {
 
         while(playersMoney[0]>0 && playersMoney[1]>0){
             initRound();
-            System.out.println("Вам выпала карта "+CardUtils.toString(addCard2Player(0)));
-            System.out.println("Вам выпала карта "+CardUtils.toString(addCard2Player(0)));
-           System.out.println("Сумма ваших очков -  "+getFinalSum(0));
+
+            log.info("Вам выпала карта "+CardUtils.toString(addCard2Player(0)));
+            log.info("Вам выпала карта "+CardUtils.toString(addCard2Player(0)));
+           log.info("Сумма ваших очков -  "+getFinalSum(0));
            boolean et=true;
            if(getFinalSum(0)>0){
                boolean et1=true;
               do{
                   et1 =Choice.confirm("Берём ещё? ");
                   if (et1){
-                      System.out.println("Вам выпала карта "+CardUtils.toString(addCard2Player(0)));
-                      //   System.out.println("Сумма ваших очков -  "+getFinalSum(0));
+                      log.info("Вам выпала карта "+CardUtils.toString(addCard2Player(0)));
+                      //   log.info("Сумма ваших очков -  "+getFinalSum(0));
                       if(getFinalSum(0)==21){
                           playersMoney[0]+=10;
                           playersMoney[1]-=10;
-                          System.out.println("Сумма ваших очков - "+getFinalSum(0)+"Сумма очков компьютера -  "+getFinalSum(1));
-                          System.out.println("Вы выйграли раунд! Получаете 10$ ");
+                          log.info("Сумма ваших очков - "+getFinalSum(0)+"Сумма очков компьютера -  "+getFinalSum(1));
+                          log.info("Вы выйграли раунд! Получаете 10$ ");
 
                       }else if (getFinalSum(0)<1) {
                           //  System.err.println("Вы проиграли раунд! Теряете 10$ ");
@@ -52,21 +56,21 @@ public class BlackJack {
 
 
             //ход ПК
-            System.out.println("Компьютеру выпала карта "+CardUtils.toString(addCard2Player(1)));
-            System.out.println("Компьютеру выпала карта "+CardUtils.toString(addCard2Player(1)));
+            log.info("Компьютеру выпала карта "+CardUtils.toString(addCard2Player(1)));
+            log.info("Компьютеру выпала карта "+CardUtils.toString(addCard2Player(1)));
             while (et){
                 if(getFinalSum(1)==21){
                     playersMoney[0]-=10;
                     playersMoney[1]+=10;
-                    System.out.println("Сумма ваших очков - "+getFinalSum(0)+"Сумма очков компьютера -  "+getFinalSum(1));
-                    System.out.println("Вы проиграли раунд! Теряете 10$ ");
+                    log.info("Сумма ваших очков - "+getFinalSum(0)+"Сумма очков компьютера -  "+getFinalSum(1));
+                    log.info("Вы проиграли раунд! Теряете 10$ ");
                     et=false;
                 }else if (getFinalSum(1)<1) {
 
                     et=false;
                 }
                 else if (getFinalSum(1)<=16 && getFinalSum(1)> 0 ) {
-                    System.out.println("Компьютер решил взять ещё и ему выпала карта "+CardUtils.toString(addCard2Player(1)));
+                    log.info("Компьютер решил взять ещё и ему выпала карта "+CardUtils.toString(addCard2Player(1)));
                 }else {
                     break;
                 }
@@ -78,13 +82,13 @@ public class BlackJack {
                 playersMoney[1]+=10;
                 playersMoney[0]-=10;
 
-                System.out.println("Вы проиграли раунд! Теряете 10$ ");
+                log.info("Вы проиграли раунд! Теряете 10$ ");
             } else if (getFinalSum(1)< getFinalSum(0)) {
                 playersMoney[1]-=10;
                 playersMoney[0]+=10;
-                System.out.println("Вы выйграли раунд! Получаете 10$ ");
+                log.info("Вы выйграли раунд! Получаете 10$ ");
             }else {
-                System.out.println("Ничья, все остаются при своих $ ");
+                log.info("Ничья, все остаются при своих $ ");
             }
 
 
@@ -98,7 +102,7 @@ public class BlackJack {
 
         }
         if (playersMoney[0] > 0)
-            System.out.println("Вы выиграли! Поздравляем!");
+            log.info("Вы выиграли! Поздравляем!");
         else
             System.err.println("Вы проиграли. Соболезнуем...");
 
@@ -137,7 +141,7 @@ public class BlackJack {
     }
 
     private static void initRound() {
-        System.out.println("\nУ Вас " + playersMoney[0] + "$, у компьютера - " + playersMoney[1] + "$. Начинаем новый раунд!");
+        log.info("\nУ Вас " + playersMoney[0] + "$, у компьютера - " + playersMoney[1] + "$. Начинаем новый раунд!");
         cards = CardUtils.getShaffledCards();
         playersCards = new int[2][MAX_CARDS_COUNT];
         playersCursors = new int[]{0,0};

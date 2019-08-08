@@ -1,11 +1,12 @@
 package games;
 import org.apache.commons.math3.util.MathArrays;
+import org.slf4j.Logger;
 
 import static games.CardUtils.*;
 
 public class Drunkard {
 
-
+    private static final Logger log = org.slf4j.LoggerFactory.getLogger(Drunkard.class);
     private static int[][] playersCards = new int[2][CARDS_TOTAL_COUNT];
     private static int[] playerCardTails = new int[2];
     private static int[] playerCardHeads = new int[2];
@@ -37,9 +38,9 @@ public class Drunkard {
 
 
     public static void main(String ... __) throws  Exception{
-        System.out.println(CardUtils.toString(35));
-        System.out.println("Масть 36-й карты -  " + getSuit(35));
-        System.out.println("Размерность 36-й карты -  " + getPar(35));
+//        log.info(CardUtils.toString(35));
+//        log.info("Масть 36-й карты -  " + getSuit(35));
+//        log.info("Размерность 36-й карты -  " + getPar(35));
         fillMap();
 
 
@@ -51,13 +52,13 @@ public class Drunkard {
 
         while(on){
 
-            System.out.println("Итерация №"+i+" Игрок №1 карта: " + CardUtils.toString(playersCards[0][playersCardTail])
+            log.info("Итерация №"+i+" Игрок №1 карта: " + CardUtils.toString(playersCards[0][playersCardTail])
                     +"; игрок №2 карта: "+CardUtils.toString(playersCards[1][playersCardTail])+" .");
 
 
             //"Выиграл игрок 1! ""Выиграл игрок 1! ""Выиграл игрок 1! ""Выиграл игрок 1! ""Выиграл игрок 1! ""Выиграл игрок 1! ""Выиграл игрок 1! "
             if(( playersCards[0][playersCardTail] % PARS_TOTAL_COUNT >playersCards[1][playersCardTail] % PARS_TOTAL_COUNT)){
-                System.out.println("Выиграл игрок 1! ");
+                log.info("Выиграл игрок 1! ");
                 if ( M1()!=-7) {
                     if (playersCards[0][playersCardTail] != -1) {
                         playersCards[0][M1()] = playersCards[0][playersCardTail];
@@ -71,21 +72,21 @@ public class Drunkard {
                         count2--;
                     }
                 }
-                System.out.println("У игрока №1 "+count1+" карт, у игрока №2 "+count2+" карт");
+                log.info("У игрока №1 "+count1+" карт, у игрока №2 "+count2+" карт");
                 if( count1==CARDS_TOTAL_COUNT){
-                    System.out.println("Выиграл первый  игрок! Количество произведённых итераций: "+i);
+                    log.info("Выиграл первый  игрок! Количество произведённых итераций: "+i);
                     on=false;
                     break;
                 }
 
     } else if(( playersCards[0][playersCardTail] % PARS_TOTAL_COUNT == playersCards[1][playersCardTail] % PARS_TOTAL_COUNT)){
-                System.out.println(" Нечя ");
-                System.out.println("У игрока №1 "+count1+" карт, у игрока №2 "+count2+" карт");
+                log.info(" Нечя ");
+                log.info("У игрока №1 "+count1+" карт, у игрока №2 "+count2+" карт");
 
             }
             else if (( playersCards[0][playersCardTail] % PARS_TOTAL_COUNT < playersCards[1][playersCardTail] % PARS_TOTAL_COUNT)){
                 //Выиграл игрок 2! Выиграл игрок 2! Выиграл игрок 2!Выиграл игрок 2!Выиграл игрок 2!Выиграл игрок 2!Выиграл игрок 2!
-                System.out.println("Выиграл игрок 2! ");
+                log.info("Выиграл игрок 2! ");
                 if ( M2()!=-7){
                     if (playersCards[0][playersCardTail]!=-1  ){
                         playersCards[1][M2()]=playersCards[0][playersCardTail];
@@ -99,9 +100,9 @@ public class Drunkard {
                     }
                 }
 
-                System.out.println("У игрока №1 "+count1+" карт, у игрока №2 "+count2+" карт");
+                log.info("У игрока №1 "+count1+" карт, у игрока №2 "+count2+" карт");
                 if( count2==CARDS_TOTAL_COUNT ){
-                    System.out.println("Выиграл второй игрок! Количество произведённых итераций: "+i);
+                    log.info("Выиграл второй игрок! Количество произведённых итераций: "+i);
                     on=false;
                     break;
                 }
@@ -111,11 +112,11 @@ public class Drunkard {
 
             if (i>10000 ){
                 if (count1>count2){
-                    System.out.println("Выиграл первый игрок! Количество произведённых итераций: "+i);
+                    log.info("Выиграл первый игрок! Количество произведённых итераций: "+i);
                     on=false;
                     break;
                 }else {
-                    System.out.println("Выиграл второй игрок! Количество произведённых итераций: "+i);
+                    log.info("Выиграл второй игрок! Количество произведённых итераций: "+i);
                     on=false;
                     break;
                 }
@@ -125,7 +126,7 @@ public class Drunkard {
 
 
         for(int q=0;q<36;q++){
-            System.out.println(q+") "+CardUtils.toString(playersCards[0][q])+" | "+CardUtils.toString(playersCards[1][q]));
+            log.info(q+") "+CardUtils.toString(playersCards[0][q])+" | "+CardUtils.toString(playersCards[1][q]));
                  }
            }
 

@@ -1,6 +1,5 @@
 .DEFAULT_GOAL := run
-run:
-	mvnw clean package
+run:build
 	java -jar ./target/java-project-lvl1-1.0-SNAPSHOT-jar-with-dependencies.jar 1
 build:
 	mvnw clean package
